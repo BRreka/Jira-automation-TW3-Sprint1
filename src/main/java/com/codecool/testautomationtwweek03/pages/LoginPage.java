@@ -9,7 +9,7 @@ public class LoginPage {
     private final By username = By.id("login-form-username");
     private final By password = By.id("login-form-password");
     private final By loginButton = By.id("login-form-submit");
-    private final By errorMessage = By.xpath("//*[text()='Sorry, your username and password are incorrect - please try again.']");
+    private final By errorMessage = By.xpath("//*[@id=\"login-form\"]/div[1]/div[1]/p");
     private final By profileMenu = By.id("user-options");
     private final By logoutOption = By.id("log_out");
     public LoginPage(WebDriver driver) {

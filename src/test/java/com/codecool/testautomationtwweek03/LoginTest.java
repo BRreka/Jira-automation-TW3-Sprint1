@@ -47,11 +47,38 @@ public class LoginTest {
         loginPage.clickProfileMenu();
         assertTrue(loginPage.findLogout());
         driver.navigate().to("https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa");
-        assertEquals( properties.getProperty("username"),profPage.getUsernameFromProfile());
+        assertEquals(properties.getProperty("username"), profPage.getUsernameFromProfile());
     }
 
-@AfterEach
-    public void teardown(){
+    @Test
+    public void loginNoCredentials() {
+        loginPage = new LoginPage(driver);
+        profPage = new ProfilePage(driver);
+        loginPage.loginToJira("", "");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
+    }
+
+    @Test
+    public void loginBadPassword() {
+        loginPage = new LoginPage(driver);
+        profPage = new ProfilePage(driver);
+        loginPage.loginToJira(properties.getProperty("username"), "greenEarMonkeys");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
+    }
+    @Test
+    public void loginNoPassword() {
+        loginPage = new LoginPage(driver);
+        profPage = new ProfilePage(driver);
+        loginPage.loginToJira(properties.getProperty("username"), "");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
+    }
+
+
+    @AfterEach
+    public void teardown() {
         driver.close();
-}
+    }
 }
