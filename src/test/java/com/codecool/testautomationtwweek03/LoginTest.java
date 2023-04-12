@@ -43,9 +43,8 @@ public class LoginTest {
         loginPage = new LoginPage(driver);
         profPage = new ProfilePage(driver);
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
-        //loginPage.clickLogin();
         loginPage.clickProfileMenu();
-        assertTrue(loginPage.findLogout());
+        loginPage.findLogout().isDisplayed();
         driver.navigate().to("https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa");
         assertEquals(properties.getProperty("username"), profPage.getUsernameFromProfile());
     }
