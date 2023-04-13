@@ -1,46 +1,53 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     WebDriver driver;
-
-    private final By username = By.id("login-form-username");
-    private final By password = By.id("login-form-password");
-    private final By loginButton = By.id("login-form-submit");
-    private final By errorMessage = By.xpath("//*[@id=\"login-form\"]/div[1]/div[1]/p");
-    private final By profileMenu = By.id("user-options");
-    private final By logoutOption = By.id("log_out");
+    @FindBy(id = "login-form-username")
+    private WebElement username;
+    @FindBy(id = "login-form-password")
+    private WebElement password;
+    @FindBy(id = "login-form-submit")
+    private WebElement loginButton;
+    @FindBy(xpath = "//*[@id=\"login-form\"]/div[1]/div[1]/p")
+    private WebElement errorMessage;
+    @FindBy(id = "user-options")
+    private WebElement profileMenu;
+    @FindBy(id = "log_out")
+    private WebElement logoutOption;
+    
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void setUserName(String strUserName) {
-        driver.findElement(username).sendKeys(strUserName);
+        username.sendKeys(strUserName);
     }
 
     public void setPassword(String strPassword) {
-        driver.findElement(password).sendKeys(strPassword);
+        password.sendKeys(strPassword);
     }
 
     public void clickLogin() {
-        driver.findElement(loginButton).click();
+        loginButton.click();
     }
 
     public void clickProfileMenu() {
-        driver.findElement(profileMenu).click();
+        profileMenu.click();
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
+        return errorMessage.getText();
     }
 
-    public WebElement findLogout() {
-        //Kinnick szerint ez felesleges
-        // a logut miatt at kell irnom
-        return driver.findElement(logoutOption);
+    public boolean findLogout() {
+        return logoutOption.isDisplayed();
+
     }
 
     public void loginToJira(String strUsername, String strPassword) {

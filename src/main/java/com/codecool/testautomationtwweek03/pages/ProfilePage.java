@@ -1,19 +1,20 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import java.util.Properties;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ProfilePage {
     WebDriver driver;
-    private By currUserName = By.xpath("//*[@id=\"up-d-username\"]");
+    @FindBy(xpath = "//*[@id=\"up-d-username\"]")
+    private WebElement currUserName;
 
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
-
+        PageFactory.initElements(driver, this);
     }
     public String getUsernameFromProfile(){
-        return driver.findElement(currUserName).getText();
+        return currUserName.getText();
     }
 }

@@ -9,11 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static com.codeborne.selenide.Condition.attribute;
 
 public class LoginTest {
 
@@ -78,6 +76,6 @@ public class LoginTest {
 
     @AfterEach
     public void teardown() {
-        driver.close();
+        driver.quit();
     }
 }
