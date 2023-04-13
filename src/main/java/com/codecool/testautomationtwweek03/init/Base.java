@@ -1,17 +1,20 @@
 package com.codecool.testautomationtwweek03.init;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class Base {
 
     public WebDriver driver;
     public Properties prop;
-
+    public String path;
 
     public Properties initProperties() {
         prop = new Properties();
@@ -29,5 +32,17 @@ public class Base {
         // how to put application to the path (w / mac) - webdrivert a path-ba
         // terminál chromedriver --version / ekkor van benne a pathban
         //mac - bash rc // win system property
+    }
+
+    public WebDriver initDriver() {
+        path = prop.getProperty("driverPath");
+        System.setProperty("webdriver.chrome.driver", path);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("https://jira-auto.codecool.metastage.net/login.jsp");
+        return driver;
     }
 }

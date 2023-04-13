@@ -3,71 +3,83 @@ package com.codecool.testautomationtwweek03.pages;
 import com.codecool.testautomationtwweek03.init.Utility;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 
 public class CreatIssue {
     WebDriver driver;
     Utility util;
-    private final By create = By.xpath("//*[@id=\"create_link\"]");
-    private final By project = By.xpath("//*[@id=\"project-field\"]");
-    private final By issueType = By.xpath("//*[@id=\"issuetype-field\"]");
+    @FindBy(xpath = "//*[@id=\"create_link\"]")
+    private WebElement create;
+    @FindBy(xpath = "//*[@id=\"project-field\"]")
+    private WebElement project;
+    @FindBy(xpath = "//*[@id=\"issuetype-field\"]")
+    private WebElement issueType;
+    @FindBy(xpath = "//*[@id=\"issuetype-field\"]")
+    private WebElement summary;
+    @FindBy(xpath = "//*[@id=\"tinymce\"]/p")
+    private WebElement desc;
 
-    private final By summary = By.xpath("//*[@id=\"summary\"]");
-    private final By desc = By.xpath("//*[@id=\"tinymce\"]/p");
     // private final By issueType = By.id("issuetype-field");
-    private final By prio = By.xpath("//*[@id=\"priority-field\"]");
-    private final By assignee = By.xpath("//*[@id=\"assignee-field\"]");
-    private final By submit = By.xpath("//*[@id=\"create-issue-submit\"]");
-    private final By more = By.xpath("//*[@id=\"opsbar-operations_more\"]");
-    private final By delete = By.xpath("//*[@id=\"delete-issue\"]");
-    private final By delsub = By.xpath("//*[@id=\"delete-issue-submit\"]");
+    @FindBy(xpath = "//*[@id=\"priority-field\"]")
+    private WebElement prio;
+    @FindBy(xpath = "//*[@id=\"assignee-field\"]")
+    private WebElement assignee;
+    @FindBy(xpath = "//*[@id=\"create-issue-submit\"]")
+    private WebElement submit;
+    @FindBy(xpath = "//*[@id=\"opsbar-operations_more\"]")
+    private WebElement more;
+    @FindBy(xpath = "//*[@id=\"opsbar-operations_more\"]")
+    private WebElement delete;
+    @FindBy(xpath = "//*[@id=\"opsbar-operations_more\"]")
+    private WebElement delsub;
 
     public CreatIssue(WebDriver driver) {
         this.driver = driver;
     }
 
     public WebElement getCreateIssue() {
-        return driver.findElement(create);
+        return create;
     }
 
     public WebElement getProject() {
-        return driver.findElement(project);
+        return project;
 
     }
 
     public WebElement getissueType() {
-        return driver.findElement(issueType);
+        return issueType;
     }
 
     public WebElement getSummary() {
-        return driver.findElement(summary);
+        return summary;
     }
 
     public WebElement newissueDescription() {
-        return driver.findElement(desc);
+        return desc;
     }
 
     public WebElement getPrio() {
-        return driver.findElement(prio);
+        return prio;
     }
 
     public WebElement getAssignee() {
-        return driver.findElement(assignee);
+        return assignee;
     }
 
     public WebElement createissueSubmt() {
-        return driver.findElement(submit);
+        return submit;
     }
 
     public WebElement deleissueSubmt() {
-        return driver.findElement(delsub);
+        return delsub;
     }
 
     public WebElement deleteIssues() {
-        return driver.findElement(delete);
+        return delete;
     }
 
     public WebElement moreFind() {
-        return driver.findElement(more);
+        return more;
     }
 
     public void createIssue() {

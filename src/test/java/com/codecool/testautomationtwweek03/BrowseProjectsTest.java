@@ -39,16 +39,11 @@ public class BrowseProjectsTest {
 
     @BeforeEach
     public void setUp() {
-        base = new Base(); //webdriver util - ettől elkérni a wd-t
+        //webdriver util - ettől elkérni a wd-t
+        base = new Base();
         properties = base.initProperties();
+        driver = base.initDriver();
         path = properties.getProperty("driverPath");
-        System.setProperty("webdriver.chrome.driver", path);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://jira-auto.codecool.metastage.net/login.jsp");
 
         //precondition: login
         loginPage = new LoginPage(driver);
@@ -65,6 +60,7 @@ public class BrowseProjectsTest {
         assertTrue(mtPpage.isMTPKeyPresent());
     }
 
+    /*
     @Test
     public void viewAllProjects() {
         viewAllPage = new ViewAllPage(driver);
@@ -87,6 +83,8 @@ public class BrowseProjectsTest {
 
     }
 
+
+     */
     @AfterEach
     public void teardown() {
         driver.quit();

@@ -50,6 +50,10 @@ public class LoginPage {
 
     }
 
+    public void clickLogout() {
+        logoutOption.click();
+    }
+
     public void loginToJira(String strUsername, String strPassword) {
         this.setUserName(strUsername);
         this.setPassword(strPassword);

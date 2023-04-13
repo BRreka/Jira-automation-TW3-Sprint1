@@ -3,6 +3,7 @@ package com.codecool.testautomationtwweek03;
 import com.codecool.testautomationtwweek03.init.Base;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
 import com.codecool.testautomationtwweek03.pages.ProfilePage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -25,27 +26,22 @@ public class LogoutTest {
 
     @BeforeEach
     public void setUp() {
-
         base = new Base();
         properties = base.initProperties();
+        driver = base.initDriver();
         path = properties.getProperty("driverPath");
-        System.setProperty("webdriver.chrome.driver", path);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://jira-auto.codecool.metastage.net/login.jsp");
 
         loginPage = new LoginPage(driver);
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password") );
-
     }
 
     @Test
     public void logout(){
         loginPage.clickProfileMenu();
-        loginPage.findLogout().click();
+        loginPage.clickLogout();
     }
-
+    @AfterEach
+    public void teardown() {
+        driver.quit();
+    }
 }
