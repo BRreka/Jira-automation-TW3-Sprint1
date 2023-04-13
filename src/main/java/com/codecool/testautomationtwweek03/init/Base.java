@@ -16,7 +16,7 @@ public class Base {
     public Properties initProperties() {
         prop = new Properties();
         try {
-            FileInputStream ip = new FileInputStream("/Users/krausadam/Desktop/codecool/Advanced/tw3/Test-Automation-TeamW-Week-03/src/main/java/com/codecool/testautomationtwweek03/config/config.properties");
+            FileInputStream ip = new FileInputStream("");
             prop.load(ip);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -24,5 +24,10 @@ public class Base {
             e.printStackTrace();
         }
         return prop;
+        //java maven resources - read property file ?
+
+        // how to put application to the path (w / mac) - webdrivert a path-ba
+        // terminál chromedriver --version / ekkor van benne a pathban
+        //mac - bash rc // win system property
     }
 }
