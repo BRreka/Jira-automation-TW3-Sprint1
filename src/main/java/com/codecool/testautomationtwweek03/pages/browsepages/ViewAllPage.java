@@ -1,28 +1,34 @@
 package com.codecool.testautomationtwweek03.pages.browsepages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ViewAllPage {
     WebDriver driver;
-    private By toucan = By.partialLinkText("TOUCAN");
-    private By jeti = By.partialLinkText("JETI");
-    private By coala = By.partialLinkText("COALA");
+    @FindBy(partialLinkText = "TOUCAN")
+    private WebElement toucan;
+    @FindBy(partialLinkText = "JETI")
+    private WebElement jeti;
+    @FindBy(partialLinkText = "COALA")
+    private WebElement coala;
 
     public ViewAllPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public boolean isToucanProjectHere() {
-        return driver.findElement(toucan).isDisplayed();
+        return toucan.isDisplayed();
     }
 
     public boolean isJetiProjectHere() {
-        return driver.findElement(jeti).isDisplayed();
+        return jeti.isDisplayed();
     }
 
     public boolean isCoalaProjectHere() {
-        return driver.findElement(coala).isDisplayed();
+        return coala.isDisplayed();
     }
 
 }
