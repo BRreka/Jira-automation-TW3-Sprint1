@@ -19,6 +19,7 @@ public class LoginPage {
     private WebElement profileMenu;
     @FindBy(id = "log_out")
     private WebElement logoutOption;
+    
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -46,6 +47,7 @@ public class LoginPage {
 
     public boolean findLogout() {
         return logoutOption.isDisplayed();
+
     }
 
     public void loginToJira(String strUsername, String strPassword) {
