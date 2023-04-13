@@ -2,6 +2,7 @@ package com.codecool.testautomationtwweek03.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage {
     WebDriver driver;
@@ -36,9 +37,10 @@ public class LoginPage {
         return driver.findElement(errorMessage).getText();
     }
 
-    public boolean findLogout() {
+    public WebElement findLogout() {
         //Kinnick szerint ez felesleges
-        return driver.findElement(logoutOption).isDisplayed();
+        // a logut miatt at kell irnom
+        return driver.findElement(logoutOption);
     }
 
     public void loginToJira(String strUsername, String strPassword) {
