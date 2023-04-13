@@ -1,4 +1,4 @@
-package com.codecool.testautomationtwweek03.pages.browsepages;
+package com.codecool.testautomationtwweek03.pages.browsepages.mtp;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +9,8 @@ public class BrowseMTPMainPage {
 
     public BrowseMTPMainPage(WebDriver driver) {
         this.driver = driver;
+        //this.driver = util...
+        //basepage - konstruktorába ezt (driverbeállítás)
     }
 
     public boolean isMainTestingProjectTitleDisplayed() {
