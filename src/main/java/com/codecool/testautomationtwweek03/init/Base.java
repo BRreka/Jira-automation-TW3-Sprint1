@@ -16,7 +16,7 @@ public class Base {
     public Properties initProperties() {
         prop = new Properties();
         try {
-            FileInputStream ip = new FileInputStream("/Users/krausadam/Desktop/codecool/Advanced/tw3/Test-Automation-TeamW-Week-03/src/main/java/com/codecool/testautomationtwweek03/config/config.properties");
+            FileInputStream ip = new FileInputStream("path");
             prop.load(ip);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
