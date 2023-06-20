@@ -1,7 +1,6 @@
 package com.codecool.testautomationtwweek03.init;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class PropertiesUtil {
