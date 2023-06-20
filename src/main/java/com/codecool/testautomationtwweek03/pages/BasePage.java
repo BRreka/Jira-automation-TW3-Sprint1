@@ -9,6 +9,7 @@ import java.util.*;
 public abstract class BasePage {
     protected final WebDriver driver = WebdriverUtil.getInstance();
     protected final Properties properties = PropertiesUtil.getInstance();
+    protected final String baseUrl = properties.getProperty("baseUrl");
 
     public BasePage() {
         PageFactory.initElements(driver,this);

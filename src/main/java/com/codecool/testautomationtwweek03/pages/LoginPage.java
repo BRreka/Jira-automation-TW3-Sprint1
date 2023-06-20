@@ -23,7 +23,7 @@ public class LoginPage extends BasePage {
     public void manageDriverInit() {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://jira-auto.codecool.metastage.net/");
+        driver.get(baseUrl);
     }
 
     public void setUserName(String strUserName) {
