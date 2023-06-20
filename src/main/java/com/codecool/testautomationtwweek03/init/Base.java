@@ -4,11 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.Properties;
+import java.io.*;
+import java.time.*;
+import java.util.*;
 
 public class Base {
 
@@ -19,11 +17,9 @@ public class Base {
     public Properties initProperties() {
         prop = new Properties();
         try {
-            FileInputStream ip = new FileInputStream("");
+            FileInputStream ip = new FileInputStream("config.properties path");
             prop.load(ip);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         }
         return prop;

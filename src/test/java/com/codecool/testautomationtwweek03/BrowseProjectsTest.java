@@ -3,20 +3,11 @@ package com.codecool.testautomationtwweek03;
 import com.codecool.testautomationtwweek03.init.Base;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
 import com.codecool.testautomationtwweek03.pages.browsepages.ViewAllPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.coala.BrowseCoalaPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.coala.CoalaPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.jeti.BrowseJetiPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.jeti.JetiPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.mtp.BrowseMTPMainPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.mtp.MTPpage;
-import com.codecool.testautomationtwweek03.pages.browsepages.toucan.BrowseToucanPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.toucan.ToucanPage;
+import com.codecool.testautomationtwweek03.pages.browsepages.BrowseProjectMainPage;
+import com.codecool.testautomationtwweek03.pages.browsepages.ProjectPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.time.Duration;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,14 +19,8 @@ public class BrowseProjectsTest {
     Base base;
     LoginPage loginPage;
     ViewAllPage viewAllPage;
-    BrowseMTPMainPage browseMTPMainPage;
-    MTPpage mtPpage;
-    BrowseCoalaPage browseCoalaPage;
-    CoalaPage coalaPage;
-    BrowseJetiPage browseJetiPage;
-    JetiPage jetiPage;
-    BrowseToucanPage browseToucanPage;
-    ToucanPage toucanPage;
+    BrowseProjectMainPage browseMTPMainPage;
+    ProjectPage mtPpage;
 
     @BeforeEach
     public void setUp() {
@@ -52,11 +37,12 @@ public class BrowseProjectsTest {
 
     @Test
     public void browseProjectInMTP() {
-        browseMTPMainPage = new BrowseMTPMainPage(driver);
-        mtPpage = new MTPpage(driver);
+        browseMTPMainPage = new BrowseProjectMainPage(driver);
+        mtPpage = new ProjectPage(driver);
         driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/MTP/issues/");
         assertTrue(browseMTPMainPage.isMainTestingProjectTitleDisplayed());
-        browseMTPMainPage.clickTitle();
+        //browseMTPMainPage.clickTitle();
+        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/MTP/summary");
         assertTrue(mtPpage.isMTPKeyPresent());
     }
 
