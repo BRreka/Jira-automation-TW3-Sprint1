@@ -1,10 +1,8 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.WebdriverUtil;
-import com.codecool.testautomationtwweek03.pages.LoginPage;
-import com.codecool.testautomationtwweek03.pages.ProfilePage;
+import com.codecool.testautomationtwweek03.init.*;
+import com.codecool.testautomationtwweek03.pages.*;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 import java.util.Properties;
@@ -13,25 +11,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest {
 
-    WebDriver driver;
-    Properties properties;
-    String path;
+    static Properties properties;
     ProfilePage profPage;
     LoginPage loginPage;
-    WebdriverUtil base;
+
+    @BeforeAll
+    public static void setUpAll() {
+        properties = PropertiesUtil.getInstance();
+    }
 
     @BeforeEach
-    public void setUp() {
-        base = new WebdriverUtil();
-        properties = base.initProperties();
-        driver = base.initDriver();
-        path = properties.getProperty("driverPath");
+    public void setUpEach() {
+        loginPage = new LoginPage();
+        profPage = new ProfilePage();
     }
+
 
     @Test
     public void login() {
-        loginPage = new LoginPage(driver);
-        profPage = new ProfilePage(driver);
+        loginPage = new LoginPage();
+        profPage = new ProfilePage();
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
         loginPage.clickProfileMenu();
         loginPage.findLogout();
@@ -41,8 +40,6 @@ public class LoginTest {
 
     @Test
     public void loginNoCredentials() {
-        loginPage = new LoginPage(driver);
-        profPage = new ProfilePage(driver);
         loginPage.loginToJira("", "");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
@@ -50,16 +47,12 @@ public class LoginTest {
 
     @Test
     public void loginBadPassword() {
-        loginPage = new LoginPage(driver);
-        profPage = new ProfilePage(driver);
         loginPage.loginToJira(properties.getProperty("username"), "greenEarMonkeys");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
     }
     @Test
     public void loginNoPassword() {
-        loginPage = new LoginPage(driver);
-        profPage = new ProfilePage(driver);
         loginPage.loginToJira(properties.getProperty("username"), "");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
@@ -68,6 +61,6 @@ public class LoginTest {
 
     @AfterEach
     public void teardown() {
-        driver.quit();
+        WebdriverUtil.quit();
     }
 }
