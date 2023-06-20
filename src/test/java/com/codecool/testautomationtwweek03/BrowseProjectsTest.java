@@ -1,6 +1,6 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.Base;
+import com.codecool.testautomationtwweek03.init.WebdriverUtil;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
 import com.codecool.testautomationtwweek03.pages.browsepages.ViewAllPage;
 import com.codecool.testautomationtwweek03.pages.browsepages.BrowseProjectMainPage;
@@ -16,7 +16,7 @@ public class BrowseProjectsTest {
     WebDriver driver;
     Properties properties;
     String path;
-    Base base;
+    WebdriverUtil base;
     LoginPage loginPage;
     ViewAllPage viewAllPage;
     BrowseProjectMainPage browseMTPMainPage;
@@ -25,7 +25,7 @@ public class BrowseProjectsTest {
     @BeforeEach
     public void setUp() {
         //webdriver util - ettől elkérni a wd-t
-        base = new Base();
+        base = new WebdriverUtil();
         properties = base.initProperties();
         driver = base.initDriver();
         path = properties.getProperty("driverPath");

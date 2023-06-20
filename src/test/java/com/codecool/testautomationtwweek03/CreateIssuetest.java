@@ -1,17 +1,12 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.Base;
+import com.codecool.testautomationtwweek03.init.WebdriverUtil;
 import com.codecool.testautomationtwweek03.pages.CreatIssue;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
-import com.codecool.testautomationtwweek03.pages.ProfilePage;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.time.Duration;
 import java.util.Properties;
 
 public class CreateIssuetest {
@@ -20,11 +15,11 @@ public class CreateIssuetest {
     String path;
    CreatIssue issue;
     LoginPage loginPage;
-    Base base;
+    WebdriverUtil base;
 
     @BeforeEach
     public void setUp() {
-        base = new Base();
+        base = new WebdriverUtil();
         properties = base.initProperties();
         driver = base.initDriver();
         path = properties.getProperty("driverPath");

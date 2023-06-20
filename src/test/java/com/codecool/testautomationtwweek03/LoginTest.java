@@ -1,6 +1,6 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.Base;
+import com.codecool.testautomationtwweek03.init.WebdriverUtil;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
 import com.codecool.testautomationtwweek03.pages.ProfilePage;
 import org.junit.jupiter.api.*;
@@ -18,11 +18,11 @@ public class LoginTest {
     String path;
     ProfilePage profPage;
     LoginPage loginPage;
-    Base base;
+    WebdriverUtil base;
 
     @BeforeEach
     public void setUp() {
-        base = new Base();
+        base = new WebdriverUtil();
         properties = base.initProperties();
         driver = base.initDriver();
         path = properties.getProperty("driverPath");
