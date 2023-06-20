@@ -1,34 +1,29 @@
 package com.codecool.testautomationtwweek03;
 
+import com.codecool.testautomationtwweek03.init.PropertiesUtil;
 import com.codecool.testautomationtwweek03.init.WebdriverUtil;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.*;
 
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LogoutTest {
 
-    WebDriver driver;
-    Properties properties;
-    String path;
+    static Properties properties;
 
     LoginPage loginPage;
-    WebdriverUtil base;
+
+    @BeforeAll
+    public static void setUpAll() {
+        properties = PropertiesUtil.getInstance();
+    }
 
     @BeforeEach
     public void setUp() {
-        base = new WebdriverUtil();
-        properties = base.initProperties();
-        driver = base.initDriver();
-        path = properties.getProperty("driverPath");
-
-        loginPage = new LoginPage(driver);
-        loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password") );
+        loginPage = new LoginPage();
+        loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
     }
 
     @Test
@@ -38,6 +33,6 @@ public class LogoutTest {
     }
     @AfterEach
     public void teardown() {
-        driver.quit();
+        WebdriverUtil.quit();
     }
 }
