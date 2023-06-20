@@ -1,12 +1,11 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.*;
 
-public class LoginPage {
-    WebDriver driver;
+import java.time.*;
+
+public class LoginPage extends BasePage {
     @FindBy(id = "login-form-username")
     private WebElement username;
     @FindBy(id = "login-form-password")
@@ -19,10 +18,12 @@ public class LoginPage {
     private WebElement profileMenu;
     @FindBy(id = "log_out")
     private WebElement logoutOption;
-    
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+
+    @Override
+    public void manageDriverInit() {
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("https://jira-auto.codecool.metastage.net/");
     }
 
     public void setUserName(String strUserName) {
@@ -47,7 +48,6 @@ public class LoginPage {
 
     public boolean findLogout() {
         return logoutOption.isDisplayed();
-
     }
 
     public void clickLogout() {
@@ -55,9 +55,10 @@ public class LoginPage {
     }
 
     public void loginToJira(String strUsername, String strPassword) {
-        this.setUserName(strUsername);
-        this.setPassword(strPassword);
-        this.clickLogin();
+        manageDriverInit();
+        setUserName(strUsername);
+        setPassword(strPassword);
+        clickLogin();
     }
 
 }
