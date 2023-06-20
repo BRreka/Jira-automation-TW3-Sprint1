@@ -87,20 +87,20 @@ public class CreatIssue {
 
         getCreateIssue().click();
 
-        WaitUtil.waitForElementToLoad(driver, getProject()).click();
+        WaitUtil.waitUntilClickable(driver, getProject()).click();
         getProject().sendKeys("Main Testing Project" + Keys.TAB);
         try {
-            WaitUtil.waitForElementToLoad(driver, getissueType()).click();
+            WaitUtil.waitUntilClickable(driver, getissueType()).click();
 
         } catch (StaleElementReferenceException e) {
-            WaitUtil.waitForElementToLoad(driver, getissueType()).click();
+            WaitUtil.waitUntilClickable(driver, getissueType()).click();
         }
 
         getissueType().sendKeys("Bug" + Keys.TAB);
 
 
-        try{  WaitUtil.waitForElementToLoad(driver, getSummary()).click();}catch (StaleElementReferenceException e){
-            WaitUtil.waitForElementToLoad(driver, getSummary()).click();
+        try{  WaitUtil.waitUntilClickable(driver, getSummary()).click();}catch (StaleElementReferenceException e){
+            WaitUtil.waitUntilClickable(driver, getSummary()).click();
         }
         getSummary().sendKeys("Test automation tw 3 green ear monkeys");
 
@@ -113,10 +113,10 @@ public class CreatIssue {
 
     public void deleteIssue() {
         Actions actins = new Actions(driver);
-        WebElement moreButton = WaitUtil.waitForElementToLoad(driver, moreFind());
+        WebElement moreButton = WaitUtil.waitUntilClickable(driver, moreFind());
         actins.moveToElement(moreButton).click().build().perform();
-        WaitUtil.waitForElementToLoad(driver, deleteIssues()).click();
-        WaitUtil.waitForElementToLoad(driver, deleissueSubmt()).click();
+        WaitUtil.waitUntilClickable(driver, deleteIssues()).click();
+        WaitUtil.waitUntilClickable(driver, deleissueSubmt()).click();
 
     }
 }
