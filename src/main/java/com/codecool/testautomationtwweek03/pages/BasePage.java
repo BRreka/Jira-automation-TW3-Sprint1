@@ -4,9 +4,7 @@ import com.codecool.testautomationtwweek03.init.PropertiesUtil;
 import com.codecool.testautomationtwweek03.init.WebdriverUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
-
-import java.time.Duration;
-import java.util.Properties;
+import java.util.*;
 
 public abstract class BasePage {
     protected final WebDriver driver = WebdriverUtil.getInstance();
