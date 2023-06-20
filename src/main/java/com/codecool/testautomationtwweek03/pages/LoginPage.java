@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     private WebElement logoutOption;
 
     @Override
-    public void manageDriverInit() {
+    public void manageDriver() {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(baseUrl);
@@ -55,7 +55,7 @@ public class LoginPage extends BasePage {
     }
 
     public void loginToJira(String strUsername, String strPassword) {
-        manageDriverInit();
+        manageDriver();
         setUserName(strUsername);
         setPassword(strPassword);
         clickLogin();

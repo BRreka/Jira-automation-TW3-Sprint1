@@ -15,6 +15,6 @@ public abstract class BasePage {
         PageFactory.initElements(driver,this);
     }
 
-    public abstract void manageDriverInit();
+    public abstract void manageDriver();
 
 }
