@@ -1,13 +1,13 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import com.codecool.testautomationtwweek03.init.Utility;
+import com.codecool.testautomationtwweek03.init.WaitUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class CreatIssue {
     WebDriver driver;
-    Utility util;
+    WaitUtil util;
     @FindBy(xpath = "//*[@id=\"create_link\"]")
     private WebElement create;
     @FindBy(xpath = "//*[@id=\"project-field\"]")
@@ -87,20 +87,20 @@ public class CreatIssue {
 
         getCreateIssue().click();
 
-        Utility.waitForElementToLoad(driver, getProject()).click();
+        WaitUtil.waitForElementToLoad(driver, getProject()).click();
         getProject().sendKeys("Main Testing Project" + Keys.TAB);
         try {
-            Utility.waitForElementToLoad(driver, getissueType()).click();
+            WaitUtil.waitForElementToLoad(driver, getissueType()).click();
 
         } catch (StaleElementReferenceException e) {
-            Utility.waitForElementToLoad(driver, getissueType()).click();
+            WaitUtil.waitForElementToLoad(driver, getissueType()).click();
         }
 
         getissueType().sendKeys("Bug" + Keys.TAB);
 
 
-        try{  Utility.waitForElementToLoad(driver, getSummary()).click();}catch (StaleElementReferenceException e){
-            Utility.waitForElementToLoad(driver, getSummary()).click();
+        try{  WaitUtil.waitForElementToLoad(driver, getSummary()).click();}catch (StaleElementReferenceException e){
+            WaitUtil.waitForElementToLoad(driver, getSummary()).click();
         }
         getSummary().sendKeys("Test automation tw 3 green ear monkeys");
 
@@ -113,10 +113,10 @@ public class CreatIssue {
 
     public void deleteIssue() {
         Actions actins = new Actions(driver);
-        WebElement moreButton = Utility.waitForElementToLoad(driver, moreFind());
+        WebElement moreButton = WaitUtil.waitForElementToLoad(driver, moreFind());
         actins.moveToElement(moreButton).click().build().perform();
-        Utility.waitForElementToLoad(driver, deleteIssues()).click();
-        Utility.waitForElementToLoad(driver, deleissueSubmt()).click();
+        WaitUtil.waitForElementToLoad(driver, deleteIssues()).click();
+        WaitUtil.waitForElementToLoad(driver, deleissueSubmt()).click();
 
     }
 }

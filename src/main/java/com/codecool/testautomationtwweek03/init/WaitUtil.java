@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Utility {
+public class WaitUtil {
    public static  WebDriverWait dWait;
 
    public static WebElement waitForElementToLoad(WebDriver driver, WebElement element){ //rename
