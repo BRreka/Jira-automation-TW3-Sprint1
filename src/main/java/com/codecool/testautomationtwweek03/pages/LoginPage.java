@@ -1,5 +1,6 @@
 package com.codecool.testautomationtwweek03.pages;
 
+import com.codecool.testautomationtwweek03.init.WaitUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 
@@ -47,6 +48,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean findLogout() {
+        WaitUtil.waitUntilClickable(driver, logoutOption);
         return logoutOption.isDisplayed();
     }
 
