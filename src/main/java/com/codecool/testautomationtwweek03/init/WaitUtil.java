@@ -1,11 +1,8 @@
 package com.codecool.testautomationtwweek03.init;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
+import java.time.*;
 
 public class WaitUtil {
    public static WebElement waitUntilClickable(WebDriver driver, WebElement element){
