@@ -24,7 +24,7 @@ public class LoginPage extends BasePage {
     public void manageDriver() {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(baseUrl);
+        driver.get(baseUrl + "login.jsp");
     }
 
     public void setUserName(String strUserName) {
@@ -48,11 +48,12 @@ public class LoginPage extends BasePage {
     }
 
     public boolean findLogout() {
-        WaitUtil.waitUntilClickable(driver, logoutOption);
+        WaitUtil.waitUntilVisible(driver, logoutOption);
         return logoutOption.isDisplayed();
     }
 
     public void clickLogout() {
+        WaitUtil.waitUntilClickable(driver, logoutOption);
         logoutOption.click();
     }
 
@@ -60,6 +61,7 @@ public class LoginPage extends BasePage {
         manageDriver();
         setUserName(strUsername);
         setPassword(strPassword);
+        WaitUtil.waitUntilClickable(driver, loginButton);
         clickLogin();
     }
 

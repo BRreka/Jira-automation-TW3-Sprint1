@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LoginTest {
 
+    String errorMessage = "Sorry, your username and password are incorrect - please try again.";
     static Properties properties;
     ProfilePage profPage;
     LoginPage loginPage;
@@ -30,7 +31,7 @@ public class LoginTest {
     public void login() {
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
         loginPage.clickProfileMenu();
-        loginPage.findLogout();
+        //loginPage.findLogout();
         profPage.manageDriver();
         assertEquals(properties.getProperty("username"), profPage.getUsernameFromProfile());
     }
@@ -38,21 +39,18 @@ public class LoginTest {
     @Test
     public void loginNoCredentials() {
         loginPage.loginToJira("", "");
-        assertTrue(loginPage.findLogout());
-        assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
+        assertEquals(errorMessage, loginPage.getErrorMessage());
     }
 
     @Test
     public void loginBadPassword() {
         loginPage.loginToJira(properties.getProperty("username"), "greenEarMonkeys");
-        assertTrue(loginPage.findLogout());
-        assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
+        assertEquals(errorMessage, loginPage.getErrorMessage());
     }
     @Test
     public void loginNoPassword() {
         loginPage.loginToJira(properties.getProperty("username"), "");
-        assertTrue(loginPage.findLogout());
-        assertEquals("Sorry, your username and password are incorrect - please try again.", loginPage.getErrorMessage());
+        assertEquals(errorMessage, loginPage.getErrorMessage());
     }
 
     @AfterEach

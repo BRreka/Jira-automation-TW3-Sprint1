@@ -5,9 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class CreatIssue {
-    WebDriver driver;
-    WaitUtil util;
+public class CreateIssue extends BasePage{
     @FindBy(xpath = "//*[@id=\"create_link\"]")
     private WebElement create;
     @FindBy(xpath = "//*[@id=\"project-field\"]")
@@ -32,10 +30,6 @@ public class CreatIssue {
     private WebElement delete;
     @FindBy(xpath = "//*[@id=\"opsbar-operations_more\"]")
     private WebElement delsub;
-
-    public CreatIssue(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public WebElement getCreateIssue() {
         return create;
@@ -104,19 +98,19 @@ public class CreatIssue {
         }
         getSummary().sendKeys("Test automation tw 3 green ear monkeys");
 
-
-        //  getPrio().click();
-        //getPrio().sendKeys("Low" + Keys.TAB);
-        // getAssignee().sendKeys("Automation47");
         createissueSubmt().click();
     }
 
     public void deleteIssue() {
-        Actions actins = new Actions(driver);
+        Actions actions = new Actions(driver);
         WebElement moreButton = WaitUtil.waitUntilClickable(driver, moreFind());
-        actins.moveToElement(moreButton).click().build().perform();
+        actions.moveToElement(moreButton).click().build().perform();
         WaitUtil.waitUntilClickable(driver, deleteIssues()).click();
         WaitUtil.waitUntilClickable(driver, deleissueSubmt()).click();
+    }
+
+    @Override
+    public void manageDriver() {
 
     }
 }

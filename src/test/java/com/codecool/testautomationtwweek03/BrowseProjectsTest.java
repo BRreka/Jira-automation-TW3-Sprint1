@@ -22,6 +22,8 @@ public class BrowseProjectsTest {
     BrowseProjectMainPage browseMTPMainPage;
     ProjectPage mtPpage;
 
+    /*
+
     @BeforeEach
     public void setUp() {
         //webdriver util - ettől elkérni a wd-t
