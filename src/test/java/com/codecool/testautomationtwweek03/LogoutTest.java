@@ -1,13 +1,11 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.PropertiesUtil;
-import com.codecool.testautomationtwweek03.init.WebdriverUtil;
+import com.codecool.testautomationtwweek03.util.PropertiesUtil;
+import com.codecool.testautomationtwweek03.util.WebdriverUtil;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
 import org.junit.jupiter.api.*;
 
 import java.util.Properties;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class LogoutTest {
 

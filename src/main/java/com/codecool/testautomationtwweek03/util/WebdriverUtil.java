@@ -1,4 +1,4 @@
-package com.codecool.testautomationtwweek03.init;
+package com.codecool.testautomationtwweek03.util;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

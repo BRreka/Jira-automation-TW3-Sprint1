@@ -1,6 +1,6 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.WebdriverUtil;
+import com.codecool.testautomationtwweek03.util.WebdriverUtil;
 import com.codecool.testautomationtwweek03.pages.CreatIssue;
 import com.codecool.testautomationtwweek03.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;

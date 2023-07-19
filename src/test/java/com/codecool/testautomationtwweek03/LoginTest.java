@@ -1,6 +1,6 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.init.*;
+import com.codecool.testautomationtwweek03.util.*;
 import com.codecool.testautomationtwweek03.pages.*;
 import org.junit.jupiter.api.*;
 

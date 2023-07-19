@@ -1,7 +1,7 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import com.codecool.testautomationtwweek03.init.PropertiesUtil;
-import com.codecool.testautomationtwweek03.init.WebdriverUtil;
+import com.codecool.testautomationtwweek03.util.PropertiesUtil;
+import com.codecool.testautomationtwweek03.util.WebdriverUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 import java.util.*;

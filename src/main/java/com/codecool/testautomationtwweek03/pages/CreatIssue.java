@@ -1,6 +1,6 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import com.codecool.testautomationtwweek03.init.WaitUtil;
+import com.codecool.testautomationtwweek03.util.WaitUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
