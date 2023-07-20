@@ -1,15 +1,10 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.util.PropertiesUtil;
-import com.codecool.testautomationtwweek03.util.WebdriverUtil;
-import com.codecool.testautomationtwweek03.pages.CreateIssue;
-import com.codecool.testautomationtwweek03.pages.LoginPage;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import com.codecool.testautomationtwweek03.util.*;
+import com.codecool.testautomationtwweek03.pages.*;
+import org.junit.jupiter.api.*;
 
-import java.util.Properties;
+import java.util.*;
 
 public class CreateIssueTest {
     CreateIssue issue;

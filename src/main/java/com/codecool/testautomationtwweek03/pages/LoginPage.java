@@ -1,12 +1,13 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import com.codecool.testautomationtwweek03.util.WaitUtil;
+import com.codecool.testautomationtwweek03.pages.base.*;
+import com.codecool.testautomationtwweek03.util.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 
 import java.time.*;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends BasePage implements Manage {
     @FindBy(id = "login-form-username")
     private WebElement username;
     @FindBy(id = "login-form-password")

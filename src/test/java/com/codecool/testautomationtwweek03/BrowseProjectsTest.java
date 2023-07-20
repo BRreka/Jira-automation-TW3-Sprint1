@@ -1,81 +1,84 @@
 package com.codecool.testautomationtwweek03;
 
-import com.codecool.testautomationtwweek03.util.WebdriverUtil;
-import com.codecool.testautomationtwweek03.pages.LoginPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.ViewAllPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.BrowseProjectMainPage;
-import com.codecool.testautomationtwweek03.pages.browsepages.ProjectPage;
+import com.codecool.testautomationtwweek03.util.*;
+import com.codecool.testautomationtwweek03.pages.*;
+import com.codecool.testautomationtwweek03.pages.projectpages.*;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-
-import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.*;
+
 public class BrowseProjectsTest {
-    WebDriver driver;
-    Properties properties;
-    String path;
-    WebdriverUtil base;
+    static Properties properties;
     LoginPage loginPage;
     ViewAllPage viewAllPage;
-    BrowseProjectMainPage browseMTPMainPage;
-    ProjectPage mtPpage;
+    BrowseProjectMainPage browseMainPage;
+    ProjectPage projectPage;
+    static String baseUrl;
+    @BeforeAll
+    public static void setUpAll() {
+        properties = PropertiesUtil.getInstance();
+        baseUrl = properties.getProperty("baseUrl");
+    }
 
-    /*
+
 
     @BeforeEach
-    public void setUp() {
-        //webdriver util - ettől elkérni a wd-t
-        base = new WebdriverUtil();
-        properties = base.initProperties();
-        driver = base.initDriver();
-        path = properties.getProperty("driverPath");
-
+    public void setUpEach() {
         //precondition: login
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
+        browseMainPage = new BrowseProjectMainPage();
+        projectPage = new ProjectPage();
+        viewAllPage = new ViewAllPage();
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
     }
 
     @Test
     public void browseProjectInMTP() {
-        browseMTPMainPage = new BrowseProjectMainPage(driver);
-        mtPpage = new ProjectPage(driver);
-        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/MTP/issues/");
-        assertTrue(browseMTPMainPage.isMainTestingProjectTitleDisplayed());
-        //browseMTPMainPage.clickTitle();
-        driver.navigate().to("https://jira-auto.codecool.metastage.net/projects/MTP/summary");
-        assertTrue(mtPpage.isMTPKeyPresent());
+        NavigateUtil.navigateToPage(baseUrl + "projects/MTP/issues/");
+        assertTrue(browseMainPage.getProjectTitle("Main Testing Project").isDisplayed());
+        NavigateUtil.navigateToPage(baseUrl + "projects/MTP/summary");
+        assertTrue(projectPage.getProjectKey("MTP").isDisplayed());
     }
 
-    /*
+
     @Test
     public void viewAllProjects() {
-        viewAllPage = new ViewAllPage(driver);
-        driver.navigate().to("https://jira-auto.codecool.metastage.net/secure/BrowseProjects.jspa?selectedCategory=all&selectedProjectType=all");
-
+        NavigateUtil.navigateToPage(baseUrl + "secure/BrowseProjects.jspa?selectedCategory=all&selectedProjectType=all");
+        assertTrue(viewAllPage.findProjectText("COALA").isDisplayed());
+        assertTrue(viewAllPage.findProjectText("JETI").isDisplayed());
+        assertTrue(viewAllPage.findProjectText("TOUCAN").isDisplayed());
     }
 
     @Test
     public void browseToucan() {
-
+        NavigateUtil.navigateToPage(baseUrl + "projects/TOUCAN/issues/");
+        assertTrue(browseMainPage.getProjectTitle("TOUCAN project").isDisplayed());
+        NavigateUtil.navigateToPage(baseUrl + "projects/TOUCAN/summary");
+        assertTrue(projectPage.getProjectKey("TOUCAN").isDisplayed());
     }
 
     @Test
     public void browseJeti() {
-
+        NavigateUtil.navigateToPage(baseUrl + "projects/JETI/issues/");
+        assertTrue(browseMainPage.getProjectTitle("JETI project").isDisplayed());
+        NavigateUtil.navigateToPage(baseUrl + "projects/JETI/summary");
+        assertTrue(projectPage.getProjectKey("JETI").isDisplayed());
     }
 
     @Test
     public void browseCoala() {
-
+        NavigateUtil.navigateToPage(baseUrl + "projects/COALA/issues/");
+        assertTrue(browseMainPage.getProjectTitle("COALA project").isDisplayed());
+        NavigateUtil.navigateToPage(baseUrl + "projects/COALA/summary");
+        assertTrue(projectPage.getProjectKey("COALA").isDisplayed());
     }
 
 
-     */
-    @AfterEach
-    public void teardown() {
-        driver.quit();
+    @AfterAll
+    public static void teardown() {
+        WebdriverUtil.quit();
     }
 
 }

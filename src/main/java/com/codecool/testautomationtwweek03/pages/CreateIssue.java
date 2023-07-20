@@ -1,11 +1,12 @@
 package com.codecool.testautomationtwweek03.pages;
 
-import com.codecool.testautomationtwweek03.util.WaitUtil;
+import com.codecool.testautomationtwweek03.pages.base.*;
+import com.codecool.testautomationtwweek03.util.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.support.*;
 
-public class CreateIssue extends BasePage{
+public class CreateIssue extends BasePage {
     @FindBy(xpath = "//*[@id=\"create_link\"]")
     private WebElement create;
     @FindBy(xpath = "//*[@id=\"project-field\"]")
@@ -109,8 +110,4 @@ public class CreateIssue extends BasePage{
         WaitUtil.waitUntilClickable(driver, deleissueSubmt()).click();
     }
 
-    @Override
-    public void manageDriver() {
-
-    }
 }
