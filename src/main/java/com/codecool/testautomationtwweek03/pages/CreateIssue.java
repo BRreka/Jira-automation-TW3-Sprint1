@@ -13,7 +13,7 @@ public class CreateIssue extends BasePage {
     private WebElement project;
     @FindBy(xpath = "//*[@id=\"issuetype-field\"]")
     private WebElement issueType;
-    @FindBy(xpath = "//*[@id=\"issuetype-field\"]")
+    @FindBy(xpath = "//*[@id='summary']")
     private WebElement summary;
     @FindBy(xpath = "//*[@id=\"tinymce\"]/p")
     private WebElement desc;
@@ -31,6 +31,21 @@ public class CreateIssue extends BasePage {
     private WebElement delete;
     @FindBy(xpath = "//*[@id=\"opsbar-operations_more\"]")
     private WebElement delsub;
+
+    @FindBy(xpath = "//*[contains(@class, 'issue-created-key') and contains(@class, 'issue-link')]")
+    private WebElement popUpIssue;
+
+    //breaks pom
+    @FindBy(id = "opsbar-operations_more")
+    private WebElement moreOption;
+
+    @FindBy(xpath = "//span[text()='Delete']")
+    private WebElement deleteOption;
+
+    @FindBy(id = "summary-val")
+    private WebElement summaryTitle;
+    @FindBy(id = "delete-issue-submit")
+    private WebElement deleteIssueConfirm;
 
     public WebElement getCreateIssue() {
         return create;
@@ -77,11 +92,71 @@ public class CreateIssue extends BasePage {
         return more;
     }
 
+    public void clickOnCreatedIssue() {
+        WaitUtil.waitUntilClickable(driver, popUpIssue);
+        popUpIssue.click();
+    }
+
+    public void clickOnMoreOption() {
+        WaitUtil.waitUntilClickable(driver, moreOption);
+        moreOption.click();
+    }
+
+    public void clickOnDeleteOption() {
+        WaitUtil.waitUntilClickable(driver, deleteOption);
+        deleteOption.click();
+    }
+    public String getTextOfSummary() {
+        WaitUtil.waitUntilVisible(driver, summaryTitle);
+        return summaryTitle.getText();
+    }
+    private void confirmDelete() {
+        WaitUtil.waitUntilClickable(driver, deleteIssueConfirm);
+        deleteIssueConfirm.click();
+    }
     public void createIssue() {
 
 
         getCreateIssue().click();
 
+        enterData();
+
+        getCookieToConsole();
+        editCookie();
+
+        createissueSubmt().click();
+
+        getCookieToConsole();
+    }
+
+    public void navigateToIssue() {
+        clickOnCreatedIssue();
+    }
+    public void deleteIssue() {
+        clickOnMoreOption();
+        clickOnDeleteOption();
+        confirmDelete();
+    }
+
+    private void editCookie() {
+        Cookie cookie = driver.manage().getCookieNamed("atlassian.xsrf.token");
+        driver.manage().deleteCookie(cookie);
+        driver.manage().addCookie(
+                new Cookie.Builder(cookie.getName(), cookie.getValue())
+                        .domain(cookie.getDomain())
+                        .expiresOn(cookie.getExpiry())
+                        .path(cookie.getPath())
+                        .isSecure(cookie.isSecure())
+                        .build()
+                );
+    }
+
+    private void getCookieToConsole() {
+        Cookie cookie = driver.manage().getCookieNamed("atlassian.xsrf.token");
+        System.out.println(cookie);
+    }
+
+    private void enterData() {
         WaitUtil.waitUntilClickable(driver, getProject()).click();
         getProject().sendKeys("Main Testing Project" + Keys.TAB);
         try {
@@ -93,21 +168,10 @@ public class CreateIssue extends BasePage {
 
         getissueType().sendKeys("Bug" + Keys.TAB);
 
-
-        try{  WaitUtil.waitUntilClickable(driver, getSummary()).click();}catch (StaleElementReferenceException e){
-            WaitUtil.waitUntilClickable(driver, getSummary()).click();
+        try {
+            WaitUtil.waitUntilClickable(driver, getSummary()).sendKeys("Create Issue Test A46");
+        } catch (StaleElementReferenceException e) {
+            WaitUtil.waitUntilClickable(driver, getSummary()).sendKeys("Create Issue Test A46");
         }
-        getSummary().sendKeys("Test automation tw 3 green ear monkeys");
-
-        createissueSubmt().click();
     }
-
-    public void deleteIssue() {
-        Actions actions = new Actions(driver);
-        WebElement moreButton = WaitUtil.waitUntilClickable(driver, moreFind());
-        actions.moveToElement(moreButton).click().build().perform();
-        WaitUtil.waitUntilClickable(driver, deleteIssues()).click();
-        WaitUtil.waitUntilClickable(driver, deleissueSubmt()).click();
-    }
-
 }

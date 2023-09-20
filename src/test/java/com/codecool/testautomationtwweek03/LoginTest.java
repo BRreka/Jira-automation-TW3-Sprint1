@@ -52,9 +52,11 @@ public class LoginTest {
         loginPage.loginToJira(properties.getProperty("username"), "");
         assertEquals(errorMessage, loginPage.getErrorMessage());
     }
-
+/*
     @AfterEach
     public void teardown() {
         WebdriverUtil.quit();
     }
+    */
+
 }

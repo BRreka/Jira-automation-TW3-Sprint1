@@ -6,6 +6,8 @@ import org.junit.jupiter.api.*;
 
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CreateIssueTest {
     CreateIssue issue;
     LoginPage loginPage;
@@ -18,8 +20,17 @@ public class CreateIssueTest {
         issue = new CreateIssue();
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
     }
+
     @Test
     public void createIssueTest(){
-        issue.createIssue(); issue.deleteIssue();
+        issue.createIssue();
+        issue.navigateToIssue();
+        assertEquals(issue.getTextOfSummary(),"Create Issue Test A46");
+        issue.deleteIssue();
+    }
+
+    @AfterAll
+    public static void teardown() {
+        WebdriverUtil.quit();
     }
 }
