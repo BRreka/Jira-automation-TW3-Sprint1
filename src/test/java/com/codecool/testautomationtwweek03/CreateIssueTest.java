@@ -22,8 +22,8 @@ public class CreateIssueTest {
     }
 
     @Test
-    public void createIssueTest(){
-        issue.createIssue();
+    public void createIssueTestMTPBug(){
+        issue.createIssue("Main Testing Project", "Bug", "Create Issue Test A46");
         issue.navigateToIssue();
         assertEquals(issue.getTextOfSummary(),"Create Issue Test A46");
         issue.deleteIssue();
