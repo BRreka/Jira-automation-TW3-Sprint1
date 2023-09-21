@@ -31,7 +31,7 @@ public class LoginTest {
     public void login() {
         loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
         loginPage.clickProfileMenu();
-        //loginPage.findLogout();
+        loginPage.findLogout();
         profPage.manageDriver();
         assertEquals(properties.getProperty("username"), profPage.getUsernameFromProfile());
     }
@@ -40,23 +40,29 @@ public class LoginTest {
     public void loginNoCredentials() {
         loginPage.loginToJira("", "");
         assertEquals(errorMessage, loginPage.getErrorMessage());
+        loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
     }
 
     @Test
     public void loginBadPassword() {
         loginPage.loginToJira(properties.getProperty("username"), "greenEarMonkeys");
         assertEquals(errorMessage, loginPage.getErrorMessage());
+        loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
     }
     @Test
     public void loginNoPassword() {
         loginPage.loginToJira(properties.getProperty("username"), "");
         assertEquals(errorMessage, loginPage.getErrorMessage());
+        loginPage.loginToJira(properties.getProperty("username"), properties.getProperty("password"));
     }
-/*
+
     @AfterEach
-    public void teardown() {
+    public void logout() {
+        loginPage.clickProfileMenu();
+        loginPage.clickLogout();
+    }
+    @AfterAll
+    public static void teardown() {
         WebdriverUtil.quit();
     }
-    */
-
 }

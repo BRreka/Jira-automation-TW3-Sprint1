@@ -5,22 +5,8 @@ import org.openqa.selenium.*;
 
 public class BrowseProjectMainPage extends BasePage {
 
-    //@FindBy(xpath = "//a[text()='Main Testing Project']")
-    //private WebElement mainTestingProjectTitle;
-
     public WebElement getProjectTitle(String title) {
         return driver.findElement(By.linkText(title));
     }
 
-    /*
-
-    public boolean isMainTestingProjectTitleDisplayed() {
-        return mainTestingProjectTitle.isDisplayed();
-    }
-
-    public void clickTitle() {
-        mainTestingProjectTitle.click();
-    }
-
-     */
 }

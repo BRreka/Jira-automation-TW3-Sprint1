@@ -8,10 +8,5 @@ public class ProjectPage extends BasePage {
     public WebElement getProjectKey(String key) {
         return driver.findElement(By.xpath("//dd[text()='" + key + "']"));
     }
-/*
-    public boolean isMTPKeyPresent() {
-        return MTP.isDisplayed();
-    }
 
- */
 }

@@ -5,7 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
 
 public class ProfilePage extends BasePage implements Manage {
-    @FindBy(xpath = "//*[@id=\"up-d-username\"]")
+    @FindBy(id = "up-d-username")
     private WebElement currUserName;
 
     @Override
